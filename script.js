@@ -17,6 +17,7 @@ numBtns.forEach(button => {
 
 function getNumbers(num) {
     if (!operator) {
+        num1 = ''
     num1 += num;
     screen.textContent += num1; 
     }
