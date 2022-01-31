@@ -24,7 +24,7 @@ body {
 }
 
 
-.d1 {
+.screenContainer {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -36,11 +36,7 @@ body {
     height: 60px;
 }
 
-#screen {
-    font-size: 44px;
-}
-
-.d2 {
+.numberContainer {
     grid-area: number;
     display: grid;
     width: 100%;
@@ -50,7 +46,7 @@ body {
     grid-template-rows: repeat(4, 1fr);
 }
 
-.d3 {
+.operatorContainer {
     grid-area: operator;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -58,8 +54,16 @@ body {
     grid-gap: 1px;
 }
 
-.d4 {
+.equals {
     grid-area: equals;
+}
+
+.clear {
+    grid-area: clear;
+}
+
+#screen {
+    font-size: 44px;
 }
 
 #one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #zero, #add, #subtract, #multiply, #divide, #equals, #clear {
@@ -76,6 +80,7 @@ body {
     background-color: #f4b333;
 }
 
-.clear {
-    grid-area: clear;
+button {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 24px;
 }

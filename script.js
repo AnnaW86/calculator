@@ -8,6 +8,7 @@ let num2 = '';
 let operator = '';
 let result;
 
+// numBtns to input num1 and num2:
 
 numBtns.forEach(button => {
     button.addEventListener('click', function(e) {
@@ -16,21 +17,23 @@ numBtns.forEach(button => {
 });
 
 function getNumbers(num) {
-    if (!operator) {
-        num1 = ''
-    num1 += num;
-    screen.textContent += num1; 
+    if (!operator && num1.length<10) {
+        num1 += num;
+        screen.textContent = num1;
     }
-    if (operator) {
+    if (operator && num2.length<10) {
         num2 += num;
         screen.textContent = num2;
+       }
     }
-}
+
+
+//calcBtns to input operators:
 
 calcBtns.forEach(button => {
     button.addEventListener('click', function(e) {
         if (num1 && operator && num2) {
-            operate();
+            calculate();
             num1 = result;
             num2 = '';
             getOperator(e.target.value)
@@ -45,33 +48,11 @@ function getOperator(calc) {
     operator = calc;
 }
 
-function add(a,b) {
-    //return a + b;
-    result = +a + +b;
-    screen.textContent = result;
-}
+//equalsBtn to calculate final answer:
 
-function subtract(a,b) {
-    result = +a - +b;
-    screen.textContent = result;
-}
+equalsBtn.addEventListener('click', calculate);
 
-function product(a,b) {
-    result = (+a)*(+b);
-    screen.textContent = result;
-}
-
-function quotient(a,b) {
-    result = (+a)/(+b);
-    roundedResult = parseFloat(result.toFixed(8));
-    screen.textContent = roundedResult;
-}
-
-
-
-equalsBtn.addEventListener('click', operate);
-
-function operate() {
+function calculate() {
     if (!num1 || !operator || !num2) {
         clearInput();
         alert("Uh oh, something's missing - start again.");
@@ -98,6 +79,37 @@ function operate() {
     }
 }
 
+function add(a,b) {
+    result = +a + +b;
+    getFinalAnswer(result);
+}
+
+function subtract(a,b) {
+    result = +a - +b;
+    getFinalAnswer(result);
+}
+
+function product(a,b) {
+    result = (+a)*(+b);
+    getFinalAnswer(result);
+}
+
+function quotient(a,b) {
+    result = (+a)/(+b);
+    getFinalAnswer(result);
+}
+
+function getFinalAnswer(c) {
+    if (c.toString().length > 9) {
+        finalAnswer = c.toExponential(3);
+    } else {
+        finalAnswer = c;
+    }
+    screen.textContent = finalAnswer;
+}
+
+//Clear button and escape key
+
 clearBtn.addEventListener('click', clearInput);
 
 document.addEventListener('keydown', function(e) {
@@ -113,4 +125,3 @@ function clearInput() {
     screen.textContent = '';
 }
 
-//operate('-', 2, 5);
