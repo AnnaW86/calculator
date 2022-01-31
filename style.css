@@ -26,10 +26,7 @@ body {
 .zero {
     grid-area: zero;
 }
-#zero {
-    height: 100%;
-    width: 100%;
-}
+
 .screenContainer {
     display: flex;
     justify-content: flex-end;
@@ -38,7 +35,6 @@ body {
     padding-right: 10px;
     background-color: #03cea4;
     grid-area: screen;
-    
     height: 60px;
 }
 
@@ -85,6 +81,11 @@ body {
 }
 #add, #subtract, #multiply, #divide, #equals, #clear {
     background-color: #f4b333;
+}
+
+#zero {
+    height: 100%;
+    width: 100%;
 }
 
 button {

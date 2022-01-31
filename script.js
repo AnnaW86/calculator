@@ -34,7 +34,7 @@ pointBtn.addEventListener('click', function(e) {
     });
 
 function getPoint(dot) {
-    if (!operator /*&& num1.length<0*/ && !num1.includes('.')) {
+    if (!operator && !num1.includes('.')) {
         num1 += dot;
         screen.textContent = num1;
     } else if (num2 && !num2.includes('.')) {
