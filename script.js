@@ -3,10 +3,12 @@ let numBtns = document.querySelectorAll(".num");
 let calcBtns = document.querySelectorAll(".calc");
 let equalsBtn = document.querySelector("#equals");
 let clearBtn = document.querySelector('#clear');
+let pointBtn = document.querySelector('.point');
 let num1 = '';
 let num2 = '';
 let operator = '';
 let result;
+let status = '';
 
 // numBtns to input num1 and num2:
 
@@ -27,6 +29,19 @@ function getNumbers(num) {
        }
     }
 
+pointBtn.addEventListener('click', function(e) {
+        getPoint(e.target.value)
+    });
+
+function getPoint(dot) {
+    if (!operator /*&& num1.length<0*/ && !num1.includes('.')) {
+        num1 += dot;
+        screen.textContent = num1;
+    } else if (num2 && !num2.includes('.')) {
+        num2 += dot;
+        screen.textContent = num2;
+    }
+}
 
 //calcBtns to input operators:
 
@@ -80,30 +95,37 @@ function calculate() {
 }
 
 function add(a,b) {
-    result = +a + +b;
+    initialResult = +a + +b;
+    dealWithDecimals(initialResult);
     getFinalAnswer(result);
 }
 
 function subtract(a,b) {
-    result = +a - +b;
+    initialResult = +a - +b;
+    dealWithDecimals(initialResult);
     getFinalAnswer(result);
 }
 
 function product(a,b) {
-    result = (+a)*(+b);
+    initialResult = (+a)*(+b);
+    dealWithDecimals(initialResult);
     getFinalAnswer(result);
 }
 
 function quotient(a,b) {
-    result = (+a)/(+b);
+    initialResult = (+a)/(+b);
+    dealWithDecimals(initialResult);
     getFinalAnswer(result);
 }
 
+function dealWithDecimals(d) {
+    result = Math.round(d * 10000000) / 10000000;
+}
 function getFinalAnswer(c) {
-    if (c.toString().length > 9) {
-        finalAnswer = c.toExponential(3);
-    } else {
+    if (c.toString().length <10) {
         finalAnswer = c;
+    } else {
+        finalAnswer = c.toExponential(3);
     }
     screen.textContent = finalAnswer;
 }
